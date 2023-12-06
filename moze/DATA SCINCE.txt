@@ -1,0 +1,976 @@
+Slip 1
+1.	Write program to check whether number is Harshad number or Not.	# Function to check if a number is a Harshad number
+
+
+def is_harshad_number(num):
+    # Check if the number is not zero
+    if num == 0:
+        return False
+    
+    # Calculate the sum of digits
+    sum_of_digits = sum(int(digit) for digit in str(num))
+    
+    # Check if the number is divisible by the sum of its digits
+    return num % sum_of_digits == 0
+
+# Input from the user
+number = int(input("Enter a number: "))
+
+# Check if the number is a Harshad number
+if is_harshad_number(number):
+    print(f"{number} is a Harshad number.")
+else:
+    print(f"{number} is not a Harshad number.")
+
+
+			. 			(15 marks)
+
+2.	Implement Data Visualization Kindly refers your own data.
+1. Draw a pie chart.
+2. Draw a Bar graph
+
+
+# Import necessary libraries
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate random data for demonstration
+labels = ['Category A', 'Category B', 'Category C']
+sizes = [30, 45, 25]
+colors = ['skyblue', 'lightcoral', 'lightgreen']
+
+# Draw a pie chart
+plt.figure(figsize=(8, 8))
+plt.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=140)
+plt.title('Pie Chart Example')
+plt.show()
+
+# Draw a bar graph
+categories = ['Category X', 'Category Y', 'Category Z']
+values = [50, 30, 40]
+
+plt.bar(categories, values, color=['lightblue', 'lightgreen', 'lightcoral'])
+plt.title('Bar Graph Example')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.show()
+
+
+================================================================================================================
+
+
+Slip 2
+1.	Implement Data Visualization Kindly refers “Salary_Data.csv” dataset.
+1. Draw a Scatter plot for Age and Salary.
+2. Draw Histogram for Salary. 			. 			(15 marks)
+
+
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the dataset
+salary_data = pd.read_csv("Salary_Data.csv")
+
+# Draw a Scatter plot for Age and Salary
+plt.scatter(salary_data['Age'], salary_data['Salary'])
+plt.title('Scatter Plot: Age vs Salary')
+plt.xlabel('Age')
+plt.ylabel('Salary')
+plt.show()
+
+# Draw Histogram for Salary
+plt.hist(salary_data['Salary'], bins=10, color='skyblue', edgecolor='black')
+plt.title('Histogram: Salary Distribution')
+plt.xlabel('Salary')
+plt.ylabel('Frequency')
+plt.show()
+
+
+2.	Implement clustering algorithm on given “income.csv” dataset and display it using scatter plot. 										(25 marks)
+
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+# Load the income dataset
+income_data = pd.read_csv("income.csv")
+
+# Assuming you want to perform clustering on the income dataset
+# You may need to preprocess and select relevant features
+
+# Example: Assuming 'Income' and 'Savings' are relevant features
+X = income_data[['Income', 'Savings']]
+
+# Apply KMeans clustering
+kmeans = KMeans(n_clusters=3)  # You can adjust the number of clusters as needed
+kmeans.fit(X)
+
+# Add the cluster labels to the income dataset
+income_data['Cluster'] = kmeans.labels_
+
+# Scatter plot for income dataset
+plt.scatter(income_data['Income'], income_data['Savings'], c=income_data['Cluster'], cmap='viridis')
+plt.title('Income Dataset with Clusters')
+plt.xlabel('Income')
+plt.ylabel('Savings')
+plt.show()
+
+
+===================================================================================================================
+
+
+Slip 3
+1.	Write a python program to accept input string from user and display number of vowels and consonant in string	(15 marks)
+
+# Function to count vowels and consonants in a string
+def count_vowels_and_consonants(input_string):
+    vowels = "aeiouAEIOU"
+    vowel_count = 0
+    consonant_count = 0
+
+    for char in input_string:
+        if char.isalpha():
+            if char in vowels:
+                vowel_count += 1
+            else:
+                consonant_count += 1
+
+    return vowel_count, consonant_count
+
+# Input from the user
+user_input = input("Enter a string: ")
+
+# Count vowels and consonants
+vowels, consonants = count_vowels_and_consonants(user_input)
+
+# Display the results
+print(f"Number of vowels: {vowels}")
+print(f"Number of consonants: {consonants}")
+
+
+
+2.	Implement Data Visualization Kindly refers your own data.
+1. Draw scatter plot diagram.
+2. Draw Histogram.
+
+
+# Import necessary libraries
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate random data for demonstration
+x = np.random.rand(50)
+y = np.random.rand(50)
+
+# Draw a scatter plot diagram
+plt.scatter(x, y, color='skyblue')
+plt.title('Scatter Plot Diagram')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.show()
+
+# Generate random data for histogram
+data = np.random.randn(1000)
+
+# Draw a histogram
+plt.hist(data, bins=20, color='lightcoral', edgecolor='black')
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.show()
+
+
+============================================================================================================
+
+
+
+
+
+
+Slip 4
+1.	Write a python program to accept input from user and check whether number is Armstrong or not. 								(15 marks)
+
+
+
+# Function to check if a number is an Armstrong number
+def is_armstrong_number(num):
+    order = len(str(num))
+    sum_of_digits = sum(int(digit) ** order for digit in str(num))
+    return num == sum_of_digits
+
+# Input from the user
+number = int(input("Enter a number: "))
+
+# Check if the number is an Armstrong number
+if is_armstrong_number(number):
+    print(f"{number} is an Armstrong number.")
+else:
+    print(f"{number} is not an Armstrong number.")
+
+
+
+
+2.	Implement Classification algorithm KNN classifier Data Analysis on given iris dataset.
+
+
+# Import necessary libraries
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load the iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize KNN classifier
+knn_classifier = KNeighborsClassifier(n_neighbors=3)  # You can adjust the number of neighbors
+
+# Fit the classifier to the training data
+knn_classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = knn_classifier.predict(X_test)
+
+# Evaluate the performance of the classifier
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+# Display classification report
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+
+========================================================================================================
+
+
+
+
+
+
+Slip 5
+1.	Write a python program to accept input from user and check whether number is Armstrong or not. 								(15 marks)
+
+
+# Function to check if a number is an Armstrong number
+def is_armstrong_number(num):
+    order = len(str(num))
+    sum_of_digits = sum(int(digit) ** order for digit in str(num))
+    return num == sum_of_digits
+
+# Input from the user
+number = int(input("Enter a number: "))
+
+# Check if the number is an Armstrong number
+if is_armstrong_number(number):
+    print(f"{number} is an Armstrong number.")
+else:
+    print(f"{number} is not an Armstrong number.")
+
+
+
+2.	Implement Classification algorithm Decision tree Data Analysis on given iris dataset.
+
+
+# Import necessary libraries
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load the iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize Decision Tree classifier
+decision_tree_classifier = DecisionTreeClassifier(random_state=42)
+
+# Fit the classifier to the training data
+decision_tree_classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = decision_tree_classifier.predict(X_test)
+
+# Evaluate the performance of the classifier
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+# Display classification report
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+
+
+
+=============================================================================================================
+
+
+
+
+Slip 6
+		
+1.	Write a Python program to print factorial of number using Recursion. 	(15 marks)
+
+# Function to calculate the factorial of a number using recursion
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+# Input from the user
+num = int(input("Enter a number: "))
+
+# Check if the number is negative
+if num < 0:
+    print("Factorial is not defined for negative numbers.")
+else:
+    result = factorial(num)
+    print(f"The factorial of {num} is: {result}")
+
+
+2.	Implement Classification algorithm KNN classifier Data Analysis on given iris dataset.
+
+
+# Import necessary libraries
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load the iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize KNN classifier
+knn_classifier = KNeighborsClassifier(n_neighbors=3)  # You can adjust the number of neighbors
+
+# Fit the classifier to the training data
+knn_classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = knn_classifier.predict(X_test)
+
+# Evaluate the performance of the classifier
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+# Display classification report
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+
+
+===========================================================================================================
+
+
+
+
+
+
+Slip 7
+1.	Implement Data Visualization Kindly refers “income.csv” dataset.
+1. Draw a scatter plot for Age and Income.
+2. Draw a bar graph for Age and Income. 					(15 marks)
+
+2.	Implement clustering algorithm on given “income.csv” dataset and display it using scatter plot on given iris dataset.
+
+
+
+
+
+
+
+
+Slip 8
+		
+1.	Write a program to print length of String using Recursion.		 	(15 marks)
+
+
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the income dataset
+income_data = pd.read_csv("income.csv")
+
+# Draw a Scatter plot for Age and Income
+plt.scatter(income_data['Age'], income_data['Income'], color='skyblue')
+plt.title('Scatter Plot: Age vs Income')
+plt.xlabel('Age')
+plt.ylabel('Income')
+plt.show()
+
+# Draw a Bar graph for Age and Income
+plt.bar(income_data['Age'], income_data['Income'], color='lightcoral')
+plt.title('Bar Graph: Age vs Income')
+plt.xlabel('Age')
+plt.ylabel('Income')
+plt.show()
+
+
+
+2.	Implement clustering algorithm on given “income.csv” dataset and display it using scatter plot on given iris dataset.
+
+
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+# Load the income dataset
+income_data = pd.read_csv("income.csv")
+
+# Assuming you want to perform clustering on the income dataset
+# You may need to preprocess and select relevant features
+
+# Example: Assuming 'Age' and 'Income' are relevant features
+X = income_data[['Age', 'Income']]
+
+# Apply KMeans clustering
+kmeans = KMeans(n_clusters=3)  # You can adjust the number of clusters as needed
+kmeans.fit(X)
+
+# Add the cluster labels to the income dataset
+income_data['Cluster'] = kmeans.labels_
+
+# Scatter plot for income dataset
+plt.scatter(income_data['Age'], income_data['Income'], c=income_data['Cluster'], cmap='viridis')
+plt.title('Income Dataset with Clusters')
+plt.xlabel('Age')
+plt.ylabel('Income')
+plt.show()
+
+
+====================================================================================================================
+
+
+
+
+
+
+
+Slip 9
+			
+1.	Write a python program to count the occurrence of each word in a given sentence											(15 marks)
+
+# Function to count the occurrence of each word in a sentence
+def word_occurrence(sentence):
+    word_count = {}
+    words = sentence.split()
+
+    for word in words:
+        word = word.lower()  # Convert to lowercase to treat words case-insensitively
+        word_count[word] = word_count.get(word, 0) + 1
+
+    return word_count
+
+# Input from the user
+user_sentence = input("Enter a sentence: ")
+
+# Count the occurrence of each word
+result = word_occurrence(user_sentence)
+
+# Display the result
+print("Word Occurrence:")
+for word, count in result.items():
+    print(f"{word}: {count}")
+
+
+
+
+2.	Implement Classification algorithm SVM Classifier Data Analysis on given iris dataset.
+										(25 marks)
+
+# Import necessary libraries
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load the iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize SVM classifier
+svm_classifier = SVC(kernel='linear')  # You can choose different kernels based on your data
+
+# Fit the classifier to the training data
+svm_classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = svm_classifier.predict(X_test)
+
+# Evaluate the performance of the classifier
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+# Display classification report
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+
+
+==============================================================================================================
+
+
+
+
+
+
+
+Slip 10
+1.	 Write a python program to print prime number between 1 to 100.
+
+# Function to check if a number is prime
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+# Print prime numbers between 1 to 100
+print("Prime numbers between 1 to 100:")
+for i in range(1, 101):
+    if is_prime(i):
+        print(i, end=" ")
+
+									 	(15 marks)
+
+2.	Implement clustering algorithm on given “income.csv” dataset and display it using scatter plot on given iris dataset. 
+										(25 marks)
+
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+# Load the income dataset
+income_data = pd.read_csv("income.csv")
+
+# Assuming you want to perform clustering on the income dataset
+# You may need to preprocess and select relevant features
+
+# Example: Assuming 'Age' and 'Income' are relevant features
+X = income_data[['Age', 'Income']]
+
+# Apply KMeans clustering
+kmeans = KMeans(n_clusters=3)  # You can adjust the number of clusters as needed
+kmeans.fit(X)
+
+# Add the cluster labels to the income dataset
+income_data['Cluster'] = kmeans.labels_
+
+# Scatter plot for income dataset
+plt.scatter(income_data['Age'], income_data['Income'], c=income_data['Cluster'], cmap='viridis')
+plt.title('Income Dataset with Clusters')
+plt.xlabel('Age')
+plt.ylabel('Income')
+plt.show()
+
+
+
+1.	Write a python program to find the quadrants in which coordinates lies get the value of x and y coordinates as input from the user and check in which quadrants the point lies and print it.
+									(15 marks)
+
+# Input from the user
+x = float(input("Enter the x-coordinate: "))
+y = float(input("Enter the y-coordinate: "))
+
+# Determine the quadrant
+if x > 0 and y > 0:
+    print("The point lies in Quadrant I.")
+elif x < 0 and y > 0:
+    print("The point lies in Quadrant II.")
+elif x < 0 and y < 0:
+    print("The point lies in Quadrant III.")
+elif x > 0 and y < 0:
+    print("The point lies in Quadrant IV.")
+elif x == 0 and y != 0:
+    print("The point lies on the y-axis.")
+elif x != 0 and y == 0:
+    print("The point lies on the x-axis.")
+else:
+    print("The point is at the origin.")
+
+
+
+2.	Implement Classification algorithm Decision Tree Classifier Data Analysis on given iris dataset.
+
+
+# Import necessary libraries
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load the iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize Decision Tree classifier
+decision_tree_classifier = DecisionTreeClassifier(random_state=42)
+
+# Fit the classifier to the training data
+decision_tree_classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = decision_tree_classifier.predict(X_test)
+
+# Evaluate the performance of the classifier
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+# Display classification report
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+
+
+===============================================================================================================
+
+
+
+
+Slip 11
+			
+1.	Write a python program to Implement Data Visualization Kindly refers your own data.
+1. Draw a horizontal bar graph.
+2. Draw scatter plot diagram.
+									 	(15 marks)
+
+										# Import necessary libraries
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate random data for demonstration
+categories = ['Category A', 'Category B', 'Category C', 'Category D']
+values = np.random.randint(1, 50, len(categories))
+
+# Draw a horizontal bar graph
+plt.barh(categories, values, color='lightgreen')
+plt.title('Horizontal Bar Graph')
+plt.xlabel('Values')
+plt.ylabel('Categories')
+plt.show()
+
+# Generate random data for scatter plot
+x = np.random.rand(50)
+y = np.random.rand(50)
+
+# Draw a scatter plot diagram
+plt.scatter(x, y, color='skyblue')
+plt.title('Scatter Plot Diagram')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.show()
+
+
+
+2.	Implement clustering algorithm on given “income.csv” dataset and display it using scatter plot on given iris dataset
+			
+
+# Import necessary libraries
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate random data for demonstration
+categories = ['Category A', 'Category B', 'Category C', 'Category D']
+values = np.random.randint(1, 50, len(categories))
+
+# Draw a horizontal bar graph
+plt.barh(categories, values, color='lightgreen')
+plt.title('Horizontal Bar Graph')
+plt.xlabel('Values')
+plt.ylabel('Categories')
+plt.show()
+
+# Generate random data for scatter plot
+x = np.random.rand(50)
+y = np.random.rand(50)
+
+# Draw a scatter plot diagram
+plt.scatter(x, y, color='skyblue')
+plt.title('Scatter Plot Diagram')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.show()
+
+
+========================================================================================================
+
+
+
+
+
+
+Slip 12
+1.	Write python program to accept number and check whether number is Automorphic or not.
+
+(15	marks)
+
+
+# Function to check if a number is Automorphic
+def is_automorphic(num):
+    square = num ** 2
+    num_str = str(num)
+    square_str = str(square)
+    
+    return square_str.endswith(num_str)
+
+# Input from the user
+number = int(input("Enter a number: "))
+
+# Check if the number is Automorphic
+if is_automorphic(number):
+    print(f"{number} is an Automorphic number.")
+else:
+    print(f"{number} is not an Automorphic number.")
+
+
+2.	Implement Classification algorithm KNN Classifier Data Analysis on given iris dataset.
+(25	marks)
+
+# Import necessary libraries
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load the iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize KNN classifier
+knn_classifier = KNeighborsClassifier(n_neighbors=3)  # You can adjust the number of neighbors
+
+# Fit the classifier to the training data
+knn_classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = knn_classifier.predict(X_test)
+
+# Evaluate the performance of the classifier
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+# Display classification report
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+
+
+
+
+=============================================================================================
+
+
+Slip 13
+
+1.	Write a Python program to print factorial of number using Recursion.
+
+(15	marks)
+
+
+# Function to calculate the factorial of a number using recursion
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+# Input from the user
+num = int(input("Enter a number: "))
+
+# Check if the number is negative
+if num < 0:
+    print("Factorial is not defined for negative numbers.")
+else:
+    result = factorial(num)
+    print(f"The factorial of {num} is: {result}")
+
+
+2.	Implement clustering algorithm on given “income.csv” dataset and display it using scatter plot on given iris dataset. 
+(25	marks)
+
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+# Load the income dataset
+income_data = pd.read_csv("income.csv")
+
+# Assuming you want to perform clustering on the income dataset
+# You may need to preprocess and select relevant features
+
+# Example: Assuming 'Age' and 'Income' are relevant features
+X = income_data[['Age', 'Income']]
+
+# Apply KMeans clustering
+kmeans = KMeans(n_clusters=3)  # You can adjust the number of clusters as needed
+kmeans.fit(X)
+
+# Add the cluster labels to the income dataset
+income_data['Cluster'] = kmeans.labels_
+
+# Scatter plot for income dataset
+plt.scatter(income_data['Age'], income_data['Income'], c=income_data['Cluster'], cmap='viridis')
+plt.title('Income Dataset with Clusters')
+plt.xlabel('Age')
+plt.ylabel('Income')
+plt.show()
+
+======================================================================================================
+
+
+
+
+
+Slip 14
+1.	Write python program to accept number and check whether number is Armstrong or not.
+
+(15 marks)
+
+
+# Function to check if a number is Armstrong
+def is_armstrong(number):
+    num_str = str(number)
+    order = len(num_str)
+    sum_of_digits = sum(int(digit) ** order for digit in num_str)
+    return number == sum_of_digits
+
+# Input from the user
+num = int(input("Enter a number: "))
+
+# Check if the number is Armstrong
+if is_armstrong(num):
+    print(f"{num} is an Armstrong number.")
+else:
+    print(f"{num} is not an Armstrong number.")
+
+
+
+2.	Implement Classification algorithm SVM Classifier Data Analysis on given iris dataset.
+
+
+# Import necessary libraries
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, classification_report
+
+# Load the iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize SVM classifier
+svm_classifier = SVC(kernel='linear')  # You can choose different kernels based on your data
+
+# Fit the classifier to the training data
+svm_classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = svm_classifier.predict(X_test)
+
+# Evaluate the performance of the classifier
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+# Display classification report
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+
+
+=======================================================================================================
+
+
+
+
+
+
+
+
+Slip 15
+1.	Write a Python program to print factorial of number using Recursion.
+
+(15 marks)
+
+
+# Function to calculate the factorial of a number using recursion
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+# Input from the user
+num = int(input("Enter a number: "))
+
+# Check if the number is negative
+if num < 0:
+    print("Factorial is not defined for negative numbers.")
+else:
+    result = factorial(num)
+    print(f"The factorial of {num} is: {result}")
+
+
+2.	Implement clustering algorithm on given “income.csv” dataset and display it using scatter plot on given iris dataset
+
+
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+# Load the income dataset
+income_data = pd.read_csv("income.csv")
+
+# Assuming you want to perform clustering on the income dataset
+# You may need to preprocess and select relevant features
+
+# Example: Assuming 'Age' and 'Income' are relevant features
+X = income_data[['Age', 'Income']]
+
+# Apply KMeans clustering
+kmeans = KMeans(n_clusters=3)  # You can adjust the number of clusters as needed
+kmeans.fit(X)
+
+# Add the cluster labels to the income dataset
+income_data['Cluster'] = kmeans.labels_
+
+# Scatter plot for income dataset
+plt.scatter(income_data['Age'], income_data['Income'], c=income_data['Cluster'], cmap='viridis')
+plt.title('Income Dataset with Clusters')
+plt.xlabel('Age')
+plt.ylabel('Income')
+plt.show()
+
+
+=======================================================================================================
